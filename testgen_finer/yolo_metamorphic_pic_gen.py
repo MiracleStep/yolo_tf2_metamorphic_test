@@ -141,7 +141,7 @@ def gen_metamorphic_pic(index, VOCdevkit_path, image_index_path, VOCdevkit_out_p
 
 
 if __name__ == '__main__':
-    index = 7
+    index = 0
     VOCdevkit_path = "../VOCdevkit"
     image_index_path = "VOC2007/ImageSets/Main/test.txt"
     VOCdevkit_out_path = "../VOC_metamorphic"
