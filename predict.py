@@ -101,14 +101,14 @@ if __name__ == "__main__":
             else:
                 r_image = yolo.detect_image(image, crop = crop, count=count)
                 r_image.show()
-    if mode == "predict_batch_images":
+    elif mode == "predict_batch_images":
         VOCdevkit_path  = 'VOC_metamorphic'
         image_ids = open(os.path.join(VOCdevkit_path, "VOC2007/ImageSets/Main/0.txt")).read().strip().split()
         for image_id in tqdm(image_ids):
             image_path = os.path.join(VOCdevkit_path, "VOC2007/JPEGImages/" + image_id + ".jpg")
             image = Image.open(image_path)
             r_image = yolo.detect_image(image, crop=crop, count=count)
-            r_image.show()
+            r_image.save("./image_save_output")
 
     elif mode == "video":
         capture = cv2.VideoCapture(video_path)

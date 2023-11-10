@@ -9,7 +9,7 @@ logs/
 model_data/
 .temp_map_out/
 VOC_metamorphic/
-weights_bak/
+image_save_ouput/
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[cod]
