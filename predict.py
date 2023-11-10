@@ -3,12 +3,12 @@
 #   整合到了一个py文件中，通过指定mode进行模式的修改。
 #-----------------------------------------------------------------------#
 import time
-
+import os
 import cv2
 import numpy as np
 import tensorflow as tf
 from PIL import Image
-
+from tqdm import tqdm
 from yolo import YOLO, YOLO_ONNX
 
 gpus = tf.config.experimental.list_physical_devices(device_type='GPU')
@@ -25,8 +25,9 @@ if __name__ == "__main__":
     #   'heatmap'           表示进行预测结果的热力图可视化，详情查看下方注释。
     #   'export_onnx'       表示将模型导出为onnx，需要pytorch1.7.1以上。
     #   'predict_onnx'      表示利用导出的onnx模型进行预测，相关参数的修改在yolo.py_377行左右处的YOLO_ONNX
+    #   'predict_batch_images' 批量检测图片
     #----------------------------------------------------------------------------------------------------------#
-    mode = "predict"
+    mode = "predict_batch_images"
     #------------------------------------------------- ------------------------#
     #   crop                指定了是否在单张图片预测后对目标进行截取
     #   count               指定了是否进行目标的计数
@@ -100,6 +101,14 @@ if __name__ == "__main__":
             else:
                 r_image = yolo.detect_image(image, crop = crop, count=count)
                 r_image.show()
+    if mode == "predict_batch_images":
+        VOCdevkit_path  = 'VOC_metamorphic'
+        image_ids = open(os.path.join(VOCdevkit_path, "VOC2007/ImageSets/Main/0.txt")).read().strip().split()
+        for image_id in tqdm(image_ids):
+            image_path = os.path.join(VOCdevkit_path, "VOC2007/JPEGImages/" + image_id + ".jpg")
+            image = Image.open(image_path)
+            r_image = yolo.detect_image(image, crop=crop, count=count)
+            r_image.show()
 
     elif mode == "video":
         capture = cv2.VideoCapture(video_path)
