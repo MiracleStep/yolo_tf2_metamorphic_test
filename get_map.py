@@ -67,8 +67,10 @@ if __name__ == "__main__":
     score_threhold  = 0.5
     #-------------------------------------------------------#
     #   map_vis用于指定是否开启VOC_map计算的可视化
+    #   map_plot        = True
     #-------------------------------------------------------#
     map_vis         = False
+    map_plot = True
     #-------------------------------------------------------#
     #   指向VOC数据集所在的文件夹
     #   默认指向根目录下的VOC数据集
@@ -103,6 +105,9 @@ if __name__ == "__main__":
             image       = Image.open(image_path)
             if map_vis:
                 image.save(os.path.join(map_out_path, "images-optional/" + image_id + ".jpg"))
+            if map_plot:
+                img = yolo.detect_image(image, crop=False, count=False)
+                img.show()
             yolo.get_map_txt(image_id, image, class_names, map_out_path)
         print("Get predict result done.")
         
