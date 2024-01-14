@@ -1,5 +1,15 @@
-import tensorflow as tf
-if __name__ == '__main__':
-    print(tf.config.list_physical_devices('GPU'))
-    print(tf.__version__)
-    print(tf.test.is_gpu_available())
+import numpy as np
+
+# 假设你有一个矩阵 A
+A = np.array([[1, -1, 1],
+              [1, -1, -1],
+              [1, -1, 2]])
+
+# 计算 A 的加号逆
+B = np.linalg.pinv(A)
+
+print("Matrix A:")
+print(A)
+
+print("Pseudoinverse of A:")
+print(B*14)

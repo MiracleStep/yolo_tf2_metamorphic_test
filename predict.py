@@ -108,7 +108,7 @@ if __name__ == "__main__":
             image_path = os.path.join(VOCdevkit_path, "VOC2007/JPEGImages/" + image_id + ".jpg")
             image = Image.open(image_path)
             r_image = yolo.detect_image(image, crop=crop, count=count)
-            r_image.save("./image_save_output")
+            r_image.save("./image_save_output/"+image_id+".jpg")
 
     elif mode == "video":
         capture = cv2.VideoCapture(video_path)
