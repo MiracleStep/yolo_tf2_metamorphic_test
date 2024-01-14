@@ -12,7 +12,7 @@ from yolo import YOLO
 gpus = tf.config.experimental.list_physical_devices(device_type='GPU')
 for gpu in gpus:
     tf.config.experimental.set_memory_growth(gpu, True)
-    
+# 模型结果评估
 if __name__ == "__main__":
     '''
     Recall和Precision不像AP是一个面积的概念，因此在门限值（Confidence）不同时，网络的Recall和Precision值是不同的。

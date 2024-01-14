@@ -11,7 +11,7 @@ from yolo import YOLO
 gpus = tf.config.experimental.list_physical_devices(device_type='GPU')
 for gpu in gpus:
     tf.config.experimental.set_memory_growth(gpu, True)
-
+# TODO：未完成神经元覆盖
 class YoloV5Model(object):
     def __init__(self, model_path="model_data/yolov5_s.h5", anchors_mask=[[6, 7, 8], [3, 4, 5], [0, 1, 2]], num_classes=80, phi="s", nactivated_threshold=0.4):
         self.crop = False # 指定了是否在单张图片预测后对目标进行截取
@@ -31,7 +31,7 @@ class YoloV5Model(object):
         print(self.model.summary())
 
 
-        # 神经元覆盖类
+        # 神经元覆盖类  还没写
         # self.nc_yolo = NCoverage(self.model, self.nactivated_threshold, only_layer=only_layer)
 
     def scale(self, layer_outputs, rmax=1, rmin=0):

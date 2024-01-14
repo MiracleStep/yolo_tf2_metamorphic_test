@@ -3,7 +3,7 @@ import numpy as np
 from keras.models import Model
 from model import Yolo
 import tensorflow as tf
-
+# TODO：未完成神经元覆盖
 class NCoverage():
 
     def __init__(self, model, threshold=0.1, exclude_layer=["input", 'pool', 'fc', 'flatten', "detect"], only_layer=""):

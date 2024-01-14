@@ -6,7 +6,7 @@ import tensorflow as tf
 import cv2
 import numpy as np
 from PIL import Image
-
+# TODO:
 def yolo_metamorphic(index, data_path):
     index = int(index)
 
